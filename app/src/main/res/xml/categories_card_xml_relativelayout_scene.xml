@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@id/start"
+        motion:duration="400">
+
+        <OnClick
+            motion:clickAction="toggle"
+            motion:targetId="@+id/showItemsButton" />
+        <KeyFrameSet>
+            <KeyAttribute
+                android:scaleX=".2"
+                android:scaleY=".2"
+                android:visibility="visible"
+                motion:framePosition="20"
+                motion:keyPositionType="parentRelative"
+                motion:motionTarget="@id/item_recycler_view" />
+
+            <KeyAttribute
+                android:rotation="360"
+                android:scaleX=".2"
+                android:scaleY=".2"
+
+                motion:framePosition="20"
+                motion:keyPositionType="parentRelative"
+                motion:motionTarget="@id/showItemsButton"
+
+
+                />
+
+
+            <KeyAttribute
+                android:rotation="180"
+                android:scaleX="1.2"
+                android:scaleY="1.2"
+
+                motion:framePosition="50"
+                motion:keyPositionType="parentRelative"
+                motion:motionTarget="@id/showItemsButton"
+
+                />
+
+        </KeyFrameSet>
+
+
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start">
+
+
+        <Constraint
+            android:id="@+id/showItemsButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            motion:layout_constraintBottom_toTopOf="@+id/item_recycler_view"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintHorizontal_bias="0.8"
+            motion:layout_constraintStart_toEndOf="@+id/categoryImage"
+            motion:layout_constraintTop_toBottomOf="@+id/categoryDetail"
+            motion:srcCompat="@android:drawable/arrow_down_float"
+
+            />
+
+
+        <Constraint
+            android:id="@+id/item_recycler_view"
+            android:layout_width="316dp"
+            android:layout_height="336dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:visibility="gone"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="@+id/categoryDetail"
+            motion:layout_constraintHorizontal_bias="0.65"
+            motion:layout_constraintStart_toStartOf="@+id/categoryImage"
+            motion:layout_constraintTop_toBottomOf="@+id/categoryDetail"
+            motion:layout_constraintVertical_bias="1.0"
+            motion:transitionEasing="cubic(0.11,0.96,0.8,0.8)" />
+        <Constraint
+            android:id="@+id/AddToCart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_editor_absoluteX="168dp"
+            motion:layout_editor_absoluteY="88dp" />
+
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+
+        <Constraint
+            android:id="@+id/showItemsButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:rotation="180"
+            android:scaleX="1"
+            android:scaleY="1"
+            motion:layout_constraintBottom_toTopOf="@+id/item_recycler_view"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintHorizontal_bias="0.8"
+            motion:layout_constraintStart_toEndOf="@+id/categoryImage"
+            motion:layout_constraintTop_toBottomOf="@+id/categoryDetail"
+            motion:srcCompat="@android:drawable/arrow_down_float"
+
+
+            />
+
+
+        <Constraint
+            android:id="@+id/item_recycler_view"
+            android:layout_width="316dp"
+            android:layout_height="336dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:visibility="visible"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="@+id/categoryDetail"
+            motion:layout_constraintStart_toStartOf="@+id/categoryImage"
+            motion:layout_constraintTop_toBottomOf="@+id/categoryDetail"
+            motion:layout_constraintVertical_bias="1.0"
+            motion:transitionEasing="linear" />
+        <Constraint
+            android:id="@+id/AddToCart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="57dp"
+            android:layout_marginTop="21dp"
+            android:layout_marginEnd="68dp"
+            motion:layout_constraintBottom_toTopOf="@+id/item_recycler_view"
+            motion:layout_constraintEnd_toStartOf="@+id/AddToCart"
+            motion:layout_constraintStart_toEndOf="@+id/categoryImage"
+            motion:layout_constraintTop_toBottomOf="@+id/categoryDetail" />
+
+    </ConstraintSet>
+</MotionScene>

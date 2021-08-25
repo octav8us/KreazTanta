@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Kreaz</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="price">%d egp</string>
+    <string name="Total">quntity</string>
+</resources>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="com.example.kreaz.ui.main.CategoriesModel" />
+
+        <variable
+            name="category"
+            type="com.example.kreaz.network.CategoriesResponseData" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+
+        android:id="@+id/category_card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        app:cardBackgroundColor="@color/primaryColor"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="3dp"
+        app:contentPadding="4dp">
+
+
+        <androidx.constraintlayout.motion.widget.MotionLayout
+            android:id="@+id/relativeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layoutDescription="@xml/categories_card_xml_relativelayout_scene">
+
+
+            <ImageView
+                android:id="@+id/categoryImage"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                app:layout_constraintEnd_toStartOf="@+id/categoryTitle"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ImageContrastCheck" />
+
+            <TextView
+                android:id="@+id/categoryTitle"
+                android:layout_width="236dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="8dp"
+                android:textSize="30sp"
+                app:layout_constraintBottom_toTopOf="@+id/categoryDetail"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/categoryImage"
+                app:layout_constraintTop_toTopOf="@+id/categoryImage"
+                app:layout_constraintVertical_chainStyle="spread_inside" />
+
+            <TextView
+                android:id="@+id/categoryDetail"
+                android:layout_width="236dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="20dp"
+                android:textColor="#004D40"
+                app:layout_constraintBottom_toTopOf="@+id/showItemsButton"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintLeft_toRightOf="@+id/categoryImage"
+                app:layout_constraintStart_toEndOf="@+id/categoryImage"
+                app:layout_constraintTop_toBottomOf="@+id/categoryTitle" />
+
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/showItemsButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
+                app:layout_constraintBottom_toTopOf="@+id/item_recycler_view"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.8"
+                app:layout_constraintStart_toEndOf="@+id/categoryImage"
+                app:layout_constraintTop_toBottomOf="@+id/categoryDetail"
+                app:srcCompat="@android:drawable/arrow_down_float"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <androidx.recyclerview.widget.RecyclerView
+
+                android:id="@+id/item_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/categoryDetail"
+                app:layout_constraintStart_toStartOf="@+id/categoryImage"
+                app:layout_constraintTop_toBottomOf="@+id/showItemsButton"
+                app:layout_constraintVertical_bias="1.0"
+                tools:itemCount="1"
+                tools:listitem="@layout/items_card" />
+
+
+            <!--            <androidx.constraintlayout.widget.Barrier-->
+            <!--                android:id="@+id/barrier2"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                app:barrierDirection="top"-->
+            <!--                app:constraint_referenced_ids="item_recycler_view"-->
+            <!--                tools:layout_editor_absoluteX="16dp"-->
+            <!--                tools:layout_editor_absoluteY="126dp" />-->
+
+
+        </androidx.constraintlayout.motion.widget.MotionLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>

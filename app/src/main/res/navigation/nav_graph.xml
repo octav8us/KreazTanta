@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph.xml"
+    app:startDestination="@id/categoriesFragment">
+    <fragment
+        android:id="@+id/categoriesFragment"
+        android:name="com.example.kreaz.ui.main.CategoriesFragment"
+        android:label="CategoriesFragment"
+        tools:layout="@layout/categories_fragment">
+
+        <action
+            android:id="@+id/showDialoge"
+            app:destination="@id/quantityDialoge" />
+        <action
+            android:id="@+id/action_categoriesFragment_to_cartFragment"
+            app:destination="@id/cartFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/offersFragment"
+        android:name="com.example.kreaz.ui.main.OffersFragment"
+        android:label="offers_fragment"
+        tools:layout="@layout/offers_fragment">
+
+    </fragment>
+    <fragment
+        android:id="@+id/branchesFragment2"
+        android:name="com.example.kreaz.ui.main.BranchesFragment"
+        android:label="BranchesFragment"
+        tools:layout="@layout/branches_fragment" />
+    <dialog
+        android:id="@+id/quantityDialoge"
+        android:name="com.example.kreaz.ui.main.AddToCartDialoge"
+        android:label="AddToCartDialoge">
+        <argument
+            android:name="name"
+            app:argType="string" />
+        <argument
+            android:name="id"
+            app:argType="integer" />
+        <argument
+            android:name="price"
+            app:argType="string" />
+    </dialog>
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.example.kreaz.ui.main.CartFragment"
+        android:label="CartFragment" />
+</navigation>
