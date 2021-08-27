@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.kreaz.network.CategoriesApi
 import com.example.kreaz.network.branch
-import com.example.kreaz.network.offer
 import kotlinx.coroutines.launch
 
 class BranchesViewModel : ViewModel() {
@@ -15,9 +14,9 @@ class BranchesViewModel : ViewModel() {
     val branches: LiveData<List<branch>> = _Branches
 
 
-    init {
-        getBranchesLive()
-    }
+     init {
+         getBranchesLive()
+     }
 
     private fun getBranchesLive() {
         try {

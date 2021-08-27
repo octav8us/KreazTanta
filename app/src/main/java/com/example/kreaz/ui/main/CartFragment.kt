@@ -71,6 +71,7 @@ class CartFragment : Fragment(), Orders {
 
     override fun deleteThisId(deleteThisId: Int) {
         categoriesModel.deleteItem(deleteThisId)
+        categoriesModel.refreshCart()
     }
 
 
@@ -79,6 +80,11 @@ class CartFragment : Fragment(), Orders {
 class CartAdapter(CartFragment: Orders) : RecyclerView.Adapter<CartAdapter.ViewHolder>() {
     var lisner: Orders = CartFragment
     private val cartset: ArrayList<cart> = arrayListOf()
+    fun delete(id: Int) {
+        lisner.deleteThisId(id)
+
+    }
+
     fun swapData(data: List<cart>) {
         cartset.clear()
         cartset.addAll(data)
@@ -109,7 +115,7 @@ class CartAdapter(CartFragment: Orders) : RecyclerView.Adapter<CartAdapter.ViewH
         holder.itemTitle.text = cartset[position].itemName
         holder.itemQuantity.text = cartset[position].quantity.toString()
         holder.deleteButton.setOnClickListener {
-            lisner.deleteThisId(cartset[position].id)
+            delete(cartset[position].id)
 
         }
 

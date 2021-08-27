@@ -1,16 +1,11 @@
 package com.example.kreaz.ui.main
 
-import android.util.Log
 import androidx.lifecycle.*
 import com.example.kreaz.data.CartDao
 import com.example.kreaz.data.cart
-import com.example.kreaz.network.CategoriesResponse
 import com.example.kreaz.network.CategoriesApi
 import com.example.kreaz.network.CategoriesResponseData
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.launch
-import okhttp3.Dispatcher
 
 class CategoriesModel(private val cartDao: CartDao) : ViewModel() {
 
@@ -21,49 +16,77 @@ class CategoriesModel(private val cartDao: CartDao) : ViewModel() {
     private val _categories = MutableLiveData<List<CategoriesResponseData>>()
     val categories: LiveData<List<CategoriesResponseData>> = _categories
 
-    val cartItems: LiveData<List<cart>> = cartDao.getItems().asLiveData()
-    val total: LiveData<Int> = cartDao.getTotal().asLiveData()
+    private val _cartItems = MutableLiveData<List<cart>>(listOf())
+    val cartItems: LiveData<List<cart>> = _cartItems
+
+    private val _total = MutableLiveData<Int>()
+    val total: LiveData<Int> = _total
 
     init {
-        getCategoriesLive()
+        getDataLive()
     }
 
 
-    private fun getCategoriesLive() {
-        try {
+    private fun getDataLive() {
+        viewModelScope.launch {
+            try {
 
 
-            viewModelScope.launch(Dispatchers.IO) {
                 val listResult = CategoriesApi.retrofitService.getCategories()
                 _categories.postValue(listResult.data ?: listOf())
 
+                var dataList = cartDao.getItems()
+
+                _cartItems.postValue(dataList)
+
+                var dataTotal = cartDao.getTotal()
+
+
+                _total.postValue(dataTotal)
+
+
+            } catch (e: Exception) {
+                _status.value = "Failure: ${e.message}"
+
 
             }
-        } catch (e: Exception) {
-            _status.value = "Failure: ${e.message}"
-
-
         }
     }
 
-
-    class ItemsViewModelFactory(private val cartdao: CartDao) : ViewModelProvider.Factory {
-        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(CategoriesModel::class.java)) {
-                @Suppress("UNCHECKED_CAST")
-                return CategoriesModel(cartdao) as T
-            }
-            throw IllegalArgumentException("Unknown ViewModel class")
-        }
-
-
-    }
 
 //    val allCartItems: LiveData<List<cart>> = cartDao.getItems().asLiveData()
 
     private fun clean() {
         viewModelScope.launch {
             cartDao.cleanTabel()
+        }
+    }
+
+    fun refresh() {
+        viewModelScope.launch {
+            try {
+
+
+                var dataList = cartDao.getItems()
+
+                _cartItems.postValue(dataList)
+
+                var dataTotal = cartDao.getTotal()
+
+
+                _total.postValue(dataTotal)
+
+            } catch (e: Exception) {
+                _status.value = "Failure: ${e.message}"
+            }
+        }
+    }
+
+    fun refreshCart() {
+
+        viewModelScope.launch {
+            refresh()
+
         }
     }
 
@@ -120,6 +143,18 @@ class CategoriesModel(private val cartDao: CartDao) : ViewModel() {
             itemPrice = itemPrice.toFloat(),
             quantity = itemCount.toInt()
         )
+    }
+
+    class ItemsViewModelFactory(private val cartdao: CartDao) : ViewModelProvider.Factory {
+        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+            if (modelClass.isAssignableFrom(CategoriesModel::class.java)) {
+                @Suppress("UNCHECKED_CAST")
+                return CategoriesModel(cartdao) as T
+            }
+            throw IllegalArgumentException("Unknown ViewModel class")
+        }
+
+
     }
 }
 

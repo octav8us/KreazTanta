@@ -1,21 +1,22 @@
 package com.example.kreaz.data
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
-import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface CartDao {
 
     @Query("SELECT * from cart ORDER BY name ASC")
-    fun getItems(): Flow<List<cart>>
+    suspend fun getItems(): List<cart>
+/*
+    @get:Query("SELECT * from cart ORDER BY name ASC")
+    var items: LiveData<List<cart>>*/
 
 
     @Query("SELECT SUM(price)FROM cart WHERE quantity>0")
-    fun getTotal(): Flow<Int>
+    suspend fun getTotal(): Int
 
     @Query("DELETE  FROM cart")
-    fun cleanTabel()
+    suspend fun cleanTabel()
 
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
