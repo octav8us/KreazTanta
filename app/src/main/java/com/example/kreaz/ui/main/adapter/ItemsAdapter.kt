@@ -1,25 +1,21 @@
 package com.example.kreaz.ui.main.adapter
 
 import android.content.Context
+import android.text.method.ScrollingMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.core.net.toUri
+import androidx.navigation.fragment.NavHostFragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.kreaz.R
 import com.example.kreaz.network.Item
-import android.text.method.ScrollingMovementMethod
-import androidx.cardview.widget.CardView
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.navigation.fragment.NavHostFragment.findNavController
-import com.example.kreaz.ui.main.AddToCartDialoge
 import com.example.kreaz.ui.main.CategoriesFragment
 import com.example.kreaz.ui.main.CategoriesFragmentDirections
-import com.example.kreaz.ui.main.Communicator
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 

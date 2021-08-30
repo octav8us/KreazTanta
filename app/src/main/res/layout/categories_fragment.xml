@@ -8,7 +8,7 @@
 
         <variable
             name="viewmodel"
-            type="com.example.kreaz.ui.main.CategoriesModel" />
+            type="com.example.kreaz.ui.main.models.CategoriesModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

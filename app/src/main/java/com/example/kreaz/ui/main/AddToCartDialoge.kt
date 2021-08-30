@@ -1,22 +1,20 @@
 package com.example.kreaz.ui.main
 
 import android.app.Dialog
-import android.content.Context
 import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.EditText
 import android.widget.SeekBar
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.example.kreaz.R
+import com.example.kreaz.ui.main.models.CategoriesModel
 
 class AddToCartDialoge : DialogFragment() {
 

@@ -4,17 +4,16 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.core.net.toUri
-import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.kreaz.R
 import com.example.kreaz.network.CategoriesResponseData
 import com.example.kreaz.ui.main.CategoriesFragment
-import com.example.kreaz.ui.main.Communicator
 
 
 class CategoriesAdapter(
@@ -82,18 +81,6 @@ class CategoriesAdapter(
             setRecycledViewPool(viewPool)
         }
 
-        /*var IsExpand = false
-         holder.card.setOnClickListener(){
-             if(IsExpand)
-             { holder.itemRecyclerView.visibility = View.GONE
-                 IsExpand = false
-         }
-             else {holder.itemRecyclerView.visibility = View.VISIBLE
-                 IsExpand = true
-
-
-
-             }            }*/
 
 
     }
@@ -101,20 +88,7 @@ class CategoriesAdapter(
     override fun getItemCount(): Int = (dataset!!.size)
 
 
-    /* var mExpandedPosition = -1
 
-     val isExpanded = position === mExpandedPosition
-
-     holder.detailsList.visibility = if (isExpanded) View.VISIBLE else View.GONE
-     holder.itemView.isActivated = isExpanded
-
-     holder.itemView.setOnClickListener {
-         mExpandedPosition = if (isExpanded) -1 else position
-         TransitionManager.beginDelayedTransition(recyclerView)
-
-
-         notifyDataSetChanged()
-     }*/
 
 
 }

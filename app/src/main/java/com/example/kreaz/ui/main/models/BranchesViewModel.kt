@@ -1,10 +1,10 @@
-package com.example.kreaz.ui.main
+package com.example.kreaz.ui.main.models
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.kreaz.network.CategoriesApi
+import com.example.kreaz.network.KreazApi
 import com.example.kreaz.network.branch
 import kotlinx.coroutines.launch
 
@@ -23,7 +23,7 @@ class BranchesViewModel : ViewModel() {
 
 
             viewModelScope.launch {
-                val listResult = CategoriesApi.retrofitService.getBranches()
+                val listResult = KreazApi.retrofitService.getBranches()
                 _Branches.value = listResult.data
 
 

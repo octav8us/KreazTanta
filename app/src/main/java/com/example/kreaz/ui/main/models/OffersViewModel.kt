@@ -1,12 +1,10 @@
-package com.example.kreaz.ui.main
+package com.example.kreaz.ui.main.models
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.kreaz.network.CategoriesApi
-import com.example.kreaz.network.CategoriesResponseData
-import com.example.kreaz.network.Offers
+import com.example.kreaz.network.KreazApi
 import com.example.kreaz.network.offer
 import kotlinx.coroutines.launch
 
@@ -24,7 +22,7 @@ class OffersViewModel : ViewModel() {
 
 
             viewModelScope.launch {
-                val listResult = CategoriesApi.retrofitService.getOffers()
+                val listResult = KreazApi.retrofitService.getOffers()
                 _Offers.value = listResult.data
 
 

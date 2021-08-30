@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.kreaz.R
 import com.example.kreaz.databinding.BranchesFragmentBinding
+import com.example.kreaz.ui.main.models.BranchesViewModel
 
 class BranchesFragment : Fragment() {
 

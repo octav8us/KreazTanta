@@ -1,10 +1,11 @@
-package com.example.kreaz.ui.main
+package com.example.kreaz.ui.main.models
 
 import androidx.lifecycle.*
 import com.example.kreaz.data.CartDao
 import com.example.kreaz.data.cart
-import com.example.kreaz.network.CategoriesApi
 import com.example.kreaz.network.CategoriesResponseData
+import com.example.kreaz.network.KreazApi
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class CategoriesModel(private val cartDao: CartDao) : ViewModel() {
@@ -16,11 +17,7 @@ class CategoriesModel(private val cartDao: CartDao) : ViewModel() {
     private val _categories = MutableLiveData<List<CategoriesResponseData>>()
     val categories: LiveData<List<CategoriesResponseData>> = _categories
 
-    private val _cartItems = MutableLiveData<List<cart>>(listOf())
-    val cartItems: LiveData<List<cart>> = _cartItems
 
-    private val _total = MutableLiveData<Int>()
-    val total: LiveData<Int> = _total
 
     init {
         getDataLive()
@@ -32,17 +29,9 @@ class CategoriesModel(private val cartDao: CartDao) : ViewModel() {
             try {
 
 
-                val listResult = CategoriesApi.retrofitService.getCategories()
+                val listResult = KreazApi.retrofitService.getCategories()
                 _categories.postValue(listResult.data ?: listOf())
 
-                var dataList = cartDao.getItems()
-
-                _cartItems.postValue(dataList)
-
-                var dataTotal = cartDao.getTotal()
-
-
-                _total.postValue(dataTotal)
 
 
             } catch (e: Exception) {
@@ -61,55 +50,10 @@ class CategoriesModel(private val cartDao: CartDao) : ViewModel() {
             cartDao.cleanTabel()
         }
     }
-
-    fun refresh() {
-        viewModelScope.launch {
-            try {
-
-
-                var dataList = cartDao.getItems()
-
-                _cartItems.postValue(dataList)
-
-                var dataTotal = cartDao.getTotal()
-
-
-                _total.postValue(dataTotal)
-
-            } catch (e: Exception) {
-                _status.value = "Failure: ${e.message}"
-            }
-        }
-    }
-
-    fun refreshCart() {
-
-        viewModelScope.launch {
-            refresh()
-
-        }
-    }
-
     fun Clean() {
         clean()
     }
 
-    fun updateItem(
-        itemId: Int,
-        itemName: String,
-        itemPrice: String,
-        itemCount: String
-    ) {
-        val updatedItem = itemEntry(itemId, itemName, itemPrice, itemCount)
-        updateItem(updatedItem)
-    }
-
-
-    private fun updateItem(item: cart) {
-        viewModelScope.launch {
-            cartDao.update(item)
-        }
-    }
 
 
     fun addNewItem(id: Int, itemName: String, itemPrice: String, itemCount: Int) {
@@ -125,7 +69,7 @@ class CategoriesModel(private val cartDao: CartDao) : ViewModel() {
 
 
     fun deleteItem(id: Int) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             cartDao.delete(id)
         }
     }

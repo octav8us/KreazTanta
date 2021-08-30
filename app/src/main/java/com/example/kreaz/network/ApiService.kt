@@ -1,9 +1,6 @@
 package com.example.kreaz.network
 
-import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface ApiService {
 
@@ -30,11 +27,14 @@ interface ApiService {
 
 
     @POST("index.php")
+    @FormUrlEncoded
     suspend fun postToCart(
         @Query("mode") mode: String = "set",
-        @Query("type") type: String = "addtocart"
-
-    )
+        @Query("type") type: String = "addtocart",
+        @Field("items") items: String,
+        @Field("name") name: String,
+        @Field("mobile") mobile: String
+    ): CartOrderResponse
 
 
 }

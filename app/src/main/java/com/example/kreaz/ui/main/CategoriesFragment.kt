@@ -4,13 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.*
-import androidx.navigation.fragment.NavHostFragment.findNavController
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kreaz.databinding.CategoriesFragmentBinding
-import com.example.kreaz.network.Item
 import com.example.kreaz.ui.main.adapter.CategoriesAdapter
+import com.example.kreaz.ui.main.models.CategoriesModel
 
 /**
  * A placeholder fragment containing a simple view.
@@ -35,7 +35,6 @@ class CategoriesFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         _binding = CategoriesFragmentBinding.inflate(inflater, container, false)
         val root = binding.root
 
