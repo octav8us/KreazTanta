@@ -1,7 +1,5 @@
 package com.example.kreaz.ui.main
 
-import android.app.Dialog
-import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -27,6 +25,44 @@ class AddToCartDialoge : DialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val orderId = args.id
+        val orderPrice = args.price
+        val orderName = args.name
+        dialogView = LayoutInflater.from(context).inflate(R.layout.add_to_cart_dialoge, null)
+
+
+        // Use the Builder class for convenient dialog construction
+        val builder = AlertDialog.Builder(requireContext())
+        requireActivity().layoutInflater
+        builder.setView(dialogView)
+
+
+
+
+
+        builder.setTitle("how many you want?")
+
+            .setPositiveButton("Confirm",
+                { dialog, id ->
+                    if (quantity == 0) {
+                        dialog.dismiss()
+                    } else {
+                        dialogeModel.addNewItem(orderId, orderName, orderPrice, quantity)
+                        dialog.dismiss()
+                    }
+
+                })
+
+            .setNegativeButton("cancel",
+                { dialog, id ->
+                    dialog.dismiss()
+                })
+
+        builder.create()
+
+
+
+
         return dialogView
     }
 
@@ -81,48 +117,7 @@ class AddToCartDialoge : DialogFragment() {
     }
 
 
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        var orderId = args.id
-        var orderPrice = args.price
-        var orderName = args.name
-        dialogView = LayoutInflater.from(context).inflate(R.layout.add_to_cart_dialoge, null)
 
-
-        return activity?.let {
-            // Use the Builder class for convenient dialog construction
-            val builder = AlertDialog.Builder(it)
-            val inflater = requireActivity().layoutInflater
-            builder.setView(dialogView)
-
-
-
-
-
-            builder.setTitle("how many you want?")
-
-                .setPositiveButton("Confirm",
-                    DialogInterface.OnClickListener { dialog, id ->
-                        if (quantity == 0) {
-                            dialog.dismiss()
-                        } else {
-                            dialogeModel.addNewItem(orderId, orderName, orderPrice, quantity)
-                            dialog.dismiss()
-                        }
-
-                    })
-
-                .setNegativeButton("cancel",
-                    DialogInterface.OnClickListener { dialog, id ->
-                        dialog.dismiss()
-                    })
-
-            builder.create()
-
-
-        } ?: throw IllegalStateException("Activity cannot be null")
-
-
-    }
 }
 
 
