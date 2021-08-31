@@ -30,7 +30,7 @@ class CategoriesModel(private val cartDao: CartDao) : ViewModel() {
 
 
                 val listResult = KreazApi.retrofitService.getCategories()
-                _categories.postValue(listResult.data ?: listOf())
+                _categories.postValue(listResult?.data ?: listOf())
 
 
 

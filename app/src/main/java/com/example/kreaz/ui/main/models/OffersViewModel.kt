@@ -5,12 +5,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.kreaz.network.KreazApi
-import com.example.kreaz.network.offer
+import com.example.kreaz.network.Offers
 import kotlinx.coroutines.launch
 
 class OffersViewModel : ViewModel() {
-    private val _Offers = MutableLiveData<List<offer>>()
-    val Offers: LiveData<List<offer>> = _Offers
+    private val _Offers = MutableLiveData<List<Offers.Offer>>()
+    val Offers: LiveData<List<Offers.Offer>> = _Offers
 
     init {
         getOffersLive()
@@ -23,7 +23,7 @@ class OffersViewModel : ViewModel() {
 
             viewModelScope.launch {
                 val listResult = KreazApi.retrofitService.getOffers()
-                _Offers.value = listResult.data
+                _Offers.value = listResult?.data
 
 
             }

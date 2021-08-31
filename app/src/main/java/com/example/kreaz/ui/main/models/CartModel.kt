@@ -51,7 +51,7 @@ class CartModel(private val cartDao: CartDao) : ViewModel() {
             }
             _response.postValue(order.await())
 
-            Log.v("magdy", "index=${order.await().data}")
+            Log.v("magdy", "index=${order.await()?.data}")
 
         }
 

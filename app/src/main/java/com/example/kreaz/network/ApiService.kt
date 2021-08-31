@@ -9,21 +9,21 @@ interface ApiService {
     suspend fun getCategories(
         @Query("mode") mode: String = "get",
         @Query("type") type: String = "categories"
-    ): CategoriesResponse
+    ): CategoriesResponse?
 
     @GET("index.php")
     suspend fun getBranches(
         @Query("mode") mode: String = "get",
         @Query("type") type: String = "branches",
         @Query("lang") lang: String = "ar"
-    ): Branches
+    ): Branches?
 
 
     @GET("index.php")
     suspend fun getOffers(
         @Query("mode") mode: String = "get",
         @Query("type") type: String = "offers"
-    ): Offers
+    ): Offers?
 
 
     @POST("index.php")
@@ -34,7 +34,7 @@ interface ApiService {
         @Field("items") items: String,
         @Field("name") name: String,
         @Field("mobile") mobile: String
-    ): CartOrderResponse
+    ): CartOrderResponse?
 
 
 }

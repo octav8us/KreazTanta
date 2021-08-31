@@ -4,18 +4,16 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
-import androidx.cardview.widget.CardView
+import android.widget.ImageView
 import androidx.core.net.toUri
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.kreaz.R
-import com.example.kreaz.network.offer
+import com.example.kreaz.network.Offers
 
 
 class OffersAdapter(
-    private val context: Context?, private val dataset: List<offer>?
+    private val context: Context?, private val dataset: List<Offers.Offer>?
 
 ) : RecyclerView.Adapter<OffersAdapter.ViewHolder>() {
 
@@ -41,7 +39,7 @@ class OffersAdapter(
 
 
         val imgUri =
-            dataset?.get(position)?.offer_img?.toUri()?.buildUpon()?.scheme("https")?.build()
+            dataset?.get(position)?.img?.toUri()?.buildUpon()?.scheme("https")?.build()
 
         holder.offerimage.load(imgUri) {
             placeholder(R.drawable.loading_animation)

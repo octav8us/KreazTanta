@@ -1,39 +1,40 @@
 package com.example.kreaz.network
 
-import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
 
 
 data class CategoriesResponse(
-    @SerializedName("data")
+
+    @Json(name = "data")
     val `data`: List<CategoriesResponseData>?,
-    @SerializedName("type")
+    @Json(name = "type")
     val type: String?
 )
 
 data class CategoriesResponseData(
-    @SerializedName("icon")
+    @Json(name = "icon")
     val icon: String?,
-    @SerializedName("id")
+    @Json(name = "id")
     val id: String?,
-    @SerializedName("items")
+    @Json(name = "items")
     val items: List<Item>?,
-    @SerializedName("name")
+    @Json(name = "name")
     val name: String?,
-    @SerializedName("total_items")
+    @Json(name = "total_items")
     val totalItems: String?
 )
 
 data class Item(
-    @SerializedName("des")
+    @Json(name = "des")
     val des: String?,
-    @SerializedName("id")
+    @Json(name = "id")
     val id: String?,
-    @SerializedName("img")
+    @Json(name = "img")
     val img: String?,
-    @SerializedName("name")
+    @Json(name = "name")
     val name: String?,
-    @SerializedName("price")
+    @Json(name = "price")
     val price: String?,
-    @SerializedName("unit")
+    @Json(name = "unit")
     val unit: String?
 )
