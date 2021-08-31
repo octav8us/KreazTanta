@@ -1,34 +1,42 @@
 package com.example.kreaz.network
 
-import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
 
 data class CartOrder(
-
-    @SerializedName("items")
+    @Json(name = "items")
     val items: String?,
-    @SerializedName("name")
+
+
+    @Json(name = "name")
     val name: String?,
 
-    @SerializedName("mobile")
+
+    @Json(name = "mobile")
     val mobile: String?
 
 
 )
 
 data class CartOrderResponse(
-    @SerializedName("data")
+
+    @Json(name = "data")
     val `data`: Data,
-    @SerializedName("type")
+
+    @Json(name = "type")
     val type: String
 ) {
     data class Data(
-        @SerializedName("status")
+
+        @Json(name = "status")
         val status: Int,
-        @SerializedName("time")
+
+        @Json(name = "time")
         val time: String,
-        @SerializedName("timestamp")
+
+        @Json(name = "timestamp")
         val timestamp: Int,
-        @SerializedName("title")
+
+        @Json(name = "title")
         val title: String
     )
 }
