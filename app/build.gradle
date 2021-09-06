@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.kreaz"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -53,10 +53,13 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.13.2'
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    implementation 'com.google.code.gson:gson:2.8.6'
-    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-moshi:2.9.0'
+
+    /*implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'*/
     implementation 'com.squareup.okhttp3:logging-interceptor:3.12.0'
     implementation("androidx.constraintlayout:constraintlayout:2.1.0")
+    implementation 'com.squareup.moshi:moshi-kotlin:1.9.3'
 
 
     implementation "androidx.room:room-runtime:$room_version"
